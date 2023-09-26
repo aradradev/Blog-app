@@ -12,8 +12,24 @@
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
-    </main>
+<header class="bg-blue-500 p-4 text-white">
+  <div class="container mx-auto flex justify-between items-center">
+    <div class="text-xl font-bold">
+      <a href="/">ConakryChronicles</a>
+    </div>
+    <nav>
+      <ul class="flex space-x-4">
+        <li><a href="/posts">All Posts</a></li>
+        <li><a href="/">Login</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main class="container mx-auto p-4 sm:p-8 md:p-12 lg:p-16">
+  <%= yield %>
+</main>
+
+
+
   </body>
 </html>
