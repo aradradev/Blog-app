@@ -11,7 +11,7 @@ RSpec.describe 'Users', type: :request do
       get '/users'
       expect(response).to render_template(:index)
     end
-    
+
     it 'should include the correct placeholder text index' do
       get '/users'
       expect(response.body).to include('Welcome to my Blog app!')
