@@ -37,7 +37,7 @@ RSpec.describe 'Posts', type: :request do
       user = User.create(name: 'Doe')
       post = Post.create(author: user, title: 'Sample title', text: 'Sample text')
       get "/posts/#{post.id}"
-      expect(response.body).to include('Sample title')  
+      expect(response.body).to include('Sample title')
       expect(response.body).to include('Sample text')
       expect(response.body).to include('Author: Doe')
       expect(response.body).to include('Comments: 0')
