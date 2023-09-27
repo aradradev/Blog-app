@@ -1,2 +1,27 @@
-<h2><%= @user.name%></h2>
-<p>Posts: <%= @user.posts_counter%></p>
+<div class="max-w-3xl mx-auto p-4">
+  <div class="bg-white shadow-md p-6 rounded-lg">
+    <div class="flex items-center space-x-4">
+      <div class="w-24 h-24 rounded-full overflow-hidden">
+        <%= image_tag(@user.photo, class: 'w-full h-full object-cover rounded-full') %>
+      </div>
+      <div>
+        <h1 class="text-3xl font-semibold"><%= @user.name %></h1>
+        <p class="text-gray-600"><%= @user.bio %></p>
+      </div>
+    </div>
+    <div class="mt-6">
+      <p><strong><%= pluralize(@user.posts.count, 'Post') %></strong></p>
+    </div>
+    <div class="mt-8">
+      <h2 class="text-xl font-semibold mb-4">Recent Posts</h2>
+      <ul class="space-y-4">
+        <% @user.recent_posts.each do |post| %>
+          <li>
+            <a href="<%= post_path(post) %>" class="text-blue-500 hover:underline"><%= post.title %></a>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+
