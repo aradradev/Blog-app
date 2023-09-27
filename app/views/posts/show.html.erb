@@ -1,5 +1,21 @@
-<h2><%= @post.title%></h2>
-<p><%= @post.text%></p>
-<p>Author: <%= @post.author.name%></p>
-<p>Comments: <%= @post.comments_counter%></p>
-<p>Likes: <%= @post.likes_counter%></p>
+<div class="max-w-3xl mx-auto p-4">
+  <h1 class="text-3xl font-semibold mb-4"><%=@post.title%></h1>
+  <p class="text-gray-600 mb-2">by <%= @user.name %> </p>
+  <div class="prose prose-lg">
+    <%= @post.text.html_safe %>
+  </div>
+  <div class="mt-8">
+    <h2 class="text-xl font-semibold mb-4">Comments:</h2>
+    <% @comments.each do |comment|%>
+      <div class="mb-4">
+        <p class="font-semibold">
+          <%= comment.user.name %>
+        </p>
+        <p>
+          <%= comment.text %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+</div>
+
