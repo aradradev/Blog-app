@@ -1,0 +1,19 @@
+<div class="max-w-3xl mx-auto p-4 bg-white shadow-md rounded-lg">
+  <h2 class="text-3xl font-semibold mb-4">Create a New Blog Post</h2>
+  <div class="bg-gray-100 p-6 rounded-lg">
+    <%= form_with(model: @post, local: true, html: { class: 'space-y-4' }) do |form| %>
+      <div>
+        <%= form.label :title, class: 'block text-gray-700 text-lg font-semibold mb-2' %>
+        <%= form.text_field :title, class: 'form-input rounded-lg block w-full border-gray-300' %>
+      </div>
+      <div>
+        <%= form.label :text, class: 'block text-gray-700 text-lg font-semibold mb-2' %>
+        <%= form.text_area :text, class: 'form-textarea rounded-lg block w-full border-gray-300', rows: 5 %>
+      </div>
+      <div>
+        <%= form.button 'Create Post', class: 'px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600' %>
+
+      </div>
+    <% end %>
+  </div>
+</div>
