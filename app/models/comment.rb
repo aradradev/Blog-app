@@ -4,6 +4,7 @@ class Comment < ApplicationRecord
 
   validates :user_id, presence: true, numericality: { only_integer: true }
   validates :post_id, presence: true, numericality: { only_integer: true }
+  validates :text, presence: true
   before_create :update_post_comments_counter
 
   private
