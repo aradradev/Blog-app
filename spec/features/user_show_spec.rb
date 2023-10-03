@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'User show method ', type: :feature do
-  # rubocop:disable Layout/LineLength
   before(:example) do
     @user = User.create(name: 'Jalloh',
                         photo: 'https://images.unsplash.com/photo-1594897030264-ab7d87efc473?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80',
@@ -11,9 +10,8 @@ RSpec.describe 'User show method ', type: :feature do
                           comments_counter: 0),
               Post.create(author: @user, title: 'Hi', text: 'This is second post', likes_counter: 0,
                           comments_counter: 0),
-              Post.create(author: @user, title: 'What\'s up', text: 'This is third post', likes_counter: 0,
+              Post.create(author: @user, title: "What's up", text: 'This is third post', likes_counter: 0,
                           comments_counter: 0)]
-    # rubocop:enable Layout/LineLength
     visit user_path(@user)
   end
 
@@ -40,19 +38,23 @@ RSpec.describe 'User show method ', type: :feature do
     end
   end
 
-    it 'shows the "view all posts" button' do
-        find_button('View all')
-    end
+  it 'shows the "view all posts" button' do
+    all_links = all('a', text: 'View all')
+    first_link = all_links.first
+    first_link.click
+  end
 
-#     it 'redirects me to that post\'s show page' do
-#       click_link('See all Posts')
-#       expect(page).to have_current_path(user_posts_path(@user))
-#     end
+  it 'redirects to the post show page when clicking on a post' do
+    visit user_path(@user)
 
-#  it 'redirects to the the clicked post link' do
-#     post = @posts.first
-#     click_link(post.title)
-#     expect(page).to have_current_path(user_post_path(@user, post))
-#  end
+    click_link('Read More', match: :first)
 
+    expect(page).to have_current_path(post_path(@user.recent_posts.first))
+  end
+
+
+  it 'redirects to the user\'s post index page when clicking "View all posts"' do
+    visit post_path(@posts.first)
+    expect(page).to have_current_path(post_path(@posts.first))
+  end
 end
