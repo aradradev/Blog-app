@@ -40,13 +40,19 @@ RSpec.describe 'User show method ', type: :feature do
     end
   end
 
-#   it 'shows the "view all posts" button' do
-#     find_button('View all')
-#   end
+    it 'shows the "view all posts" button' do
+        find_button('View all')
+    end
 
-  #   it 'redirects me to that post's show page' do
-  #     click_link('See all Posts')
-  #     expect(page).to have_current_path(user_posts_path(@user))
-  #   end
+#     it 'redirects me to that post\'s show page' do
+#       click_link('See all Posts')
+#       expect(page).to have_current_path(user_posts_path(@user))
+#     end
+
+#  it 'redirects to the the clicked post link' do
+#     post = @posts.first
+#     click_link(post.title)
+#     expect(page).to have_current_path(user_post_path(@user, post))
+#  end
 
 end
