@@ -42,7 +42,6 @@ RSpec.describe 'Post show method', type: :feature do
     visit post_path(@post)
   end
 
-
   it 'displays the post title' do
     expect(page).to have_content(@post.title)
   end
