@@ -52,7 +52,6 @@ RSpec.describe 'User show method ', type: :feature do
     expect(page).to have_current_path(post_path(@user.recent_posts.first))
   end
 
-
   it 'redirects to the user\'s post index page when clicking "View all posts"' do
     visit post_path(@posts.first)
     expect(page).to have_current_path(post_path(@posts.first))

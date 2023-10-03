@@ -33,7 +33,6 @@ RSpec.describe 'Post show method', type: :feature do
       )
     ]
 
-    # Create comments associated with the user and posts
     @comments = [
       Comment.create(user: @user, post: @posts[0], text: 'Hi Tom!'),
       Comment.create(user: @user, post: @posts[0], text: 'How are you'),
