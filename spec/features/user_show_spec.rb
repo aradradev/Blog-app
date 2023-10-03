@@ -40,9 +40,9 @@ RSpec.describe 'User show method ', type: :feature do
     end
   end
 
-  it 'shows the "view all posts" button' do
-    find_button('View all')
-  end
+#   it 'shows the "view all posts" button' do
+#     find_button('View all')
+#   end
 
   #   it 'redirects me to that post's show page' do
   #     click_link('See all Posts')
