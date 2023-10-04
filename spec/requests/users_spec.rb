@@ -14,6 +14,7 @@ RSpec.describe 'Users', type: :request do
 
     it 'should include the correct placeholder text index' do
       get '/users'
+      user = User.create(name: 'Jalloh', posts_counter: 0)
       expect(response.body).to include('Welcome to my Blog app!')
       expect(response.body).to include('User1: John Doe.')
     end
