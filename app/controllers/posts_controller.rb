@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
-  
+  before_action :authenticate_user!, only: %i[new create]
+
   def index
     @posts = Post.includes(:author, :comments).all
   end
