@@ -1,5 +1,50 @@
-<h2><%= @post.title%></h2>
-<p><%= @post.text%></p>
-<p>Author: <%= @post.author.name%></p>
-<p>Comments: <%= @post.comments_counter%></p>
-<p>Likes: <%= @post.likes_counter%></p>
+<div class="max-w-3xl mx-auto p-4 bg-white shadow-md rounded-lg">
+  <h1 class="text-3xl font-semibold mb-4"><%= @post.title %></h1>
+  <p class="text-gray-600 mb-2">by <%= @post.author.name %> </p>
+  <div class="prose prose-lg mb-4">
+    <%= @post.text.html_safe %>
+  </div>
+  <div class="flex justify-between text-gray-600">
+    <p>Comments: <%= @post.comments_counter %></p>
+    <p>Likes: <%= @post.likes_counter %></p>
+  </div>
+  <% if current_user %>
+    <%= form_for([@post, @post.likes.build]) do |f| %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.button 'Like', class: 'px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600' %>
+    <% end %>
+  <% end %>
+  <%= form_with(model: [current_user, @post.comments.build], url: post_comments_path(@post), local: true) do |f| %>
+    <%= f.hidden_field :post_id, value: @post.id %>
+    <div class="mt-4">
+      <%= f.label :text, 'Add a comment:', class: 'text-gray-600' %>
+      <%= f.text_area :text, rows: 4, class: 'form-textarea mt-2 block w-full rounded-lg border-gray-300' %>
+      <% if @comment.errors.any? %>
+        <p class="text-red-600"><%= @comment.errors.full_messages.join(', ') %></p>
+      <% end %>
+    </div>
+    <div class="mt-2">
+      <%= f.button 'Add Comment', class: 'px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600' %>
+    </div>
+  <% end %>
+  <div class="mt-8">
+  <h2 class="text-xl font-semibold mb-4">Comments:</h2>
+  <% if @post.comments_counter === 0 %>
+    <p>No comment added yet, be the first to Comment this post.</p>
+  <% else %>
+    <% @comments.each do |comment| %>
+      <div class="mb-4 flex flex-row items-center justify-start gap-3">
+        <% if comment.user.present? %>
+          <p class="font-semibold">
+            <%= comment.user.name %>:
+          </p>
+        <% end %>
+        <p>
+          <%= comment.text %>
+        </p>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+</div>
