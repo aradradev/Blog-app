@@ -7,7 +7,9 @@
   <div class="flex items-center justify-between mb-3">
     <div class="flex items-center space-x-4">
 <div class="w-12 h-12 rounded-full overflow-hidden">
-  <%= image_tag(post.author.photo, class: 'w-full h-full object-cover rounded-full user-profile') %>
+  <%= image_tag(post.author.photo, class: 'w-full h-full object-cover rounded-full user-profile') if post.author.photo.present?
+%>
+
 
       </div>
       <div class="mb-4 flex gap-4 items-center">

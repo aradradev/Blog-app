@@ -3,7 +3,8 @@
     <div class="bg-white p-4 rounded-lg shadow-md">
       <div class="flex items-center space-x-4">
         <div class="w-12 h-12 rounded-full overflow-hidden">
-          <%= image_tag(user.photo, class: 'w-full h-full object-cover rounded-full user-profile') %>
+          <%= image_tag(user.photo, class: 'w-full h-full object-cover rounded-full user-profile') if user.photo.present?
+ %>
         </div>
 <div class="flex flex-row gap-3 justify-between items-center">
 
