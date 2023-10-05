@@ -7,4 +7,21 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @posts = @user.posts.order(created_at: :desc)
   end
+
+  def edit
+    @user = current_user
+  end
+
+  def update
+    @user = current_user
+    if @user.update(user_params)
+      redirect_to @user, notice: 'Profile updated successfully.'
+    else
+      render :edit
+    end
+  end
+
+  def user_params
+    params.require(:user).permit(:name, :photo, :bio, :email, :password, :password_confirmation, :current_password)
+  end
 end
