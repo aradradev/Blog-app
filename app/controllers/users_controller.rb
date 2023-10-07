@@ -12,6 +12,10 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+  # def create
+  #   @user = current_user, notice: 'User created successfully.'
+  # end
+
   def update
     @user = current_user
     if @user.update(user_params)

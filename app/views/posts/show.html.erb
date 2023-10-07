@@ -1,6 +1,10 @@
 <div class="max-w-3xl mx-auto p-4 bg-white shadow-md rounded-lg">
   <h1 class="text-3xl font-semibold mb-4"><%= @post.title %></h1>
   <p class="text-gray-600 mb-2">by <%= @post.author.name %> </p>
+  <% if can? :destroy, @post%>
+  <%= button_to 'Delete Post', post_path(@post), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
+<% end %>
+
   <div class="prose prose-lg mb-4">
     <%= @post.text.html_safe %>
   </div>
@@ -43,6 +47,10 @@
           <%= comment.text %>
         </p>
       </div>
+      <% if can? :destroy, comment%>
+  <%= button_to 'Delete', post_comment_path(@post, comment), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
+<% end %>
+
     <% end %>
   <% end %>
 </div>

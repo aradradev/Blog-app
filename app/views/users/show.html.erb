@@ -2,17 +2,33 @@
   <div class="bg-white shadow-md p-6 rounded-lg">
     <div class="flex items-center space-x-4">
       <div class="w-24 h-24 rounded-full overflow-hidden">
-        <%= image_tag(@user.photo, class: 'w-full h-full object-cover rounded-full user-profile') if @user.photo.present?
- %>
-      </div>
+  <% if @user.photo.present? %>
+  <%= image_tag @user.photo, class: 'w-full h-full object-cover rounded-full user-profile' %>
+<% else %>
+  <%= image_tag 'https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o=
+', alt: 'Default Profile', class: 'w-full h-full object-cover rounded-full user-profile' %>
+<% end %>
+</div>
+
+
+
       <div class="mb-4">
         <h1 class="text-3xl font-semibold"><%= @user.name %></h1>
         <p class="text-gray-600"><%= @user.bio %></p>
       </div>
       <div class="ml-4">
-        <p><strong><%= pluralize(@user.posts.count, 'Posts') %></strong></p>
+<p><strong><%= pluralize(@user.posts.count, 'Post') %></strong></p>
+
       </div>
+
+
     </div>
+<% if current_user == @user%>
+  <div class="mt-4">
+    <%= link_to 'Edit Profile', edit_user_registration_path, class: 'text-blue-500 hover:underline'%>
+  </div>
+<% end %>
+
     <div class="mt-8">
       <h2 class="text-xl font-semibold mb-4">Recent Posts</h2>
       <% @user.recent_posts.each do |post| %>
@@ -33,9 +49,8 @@
                 <p><strong><%= comment.user.name %>:</strong> <%= comment.text %></p>
               </div>
             <% end %>
-            <button>
-              <%= link_to 'View all' %>
-            </button>
+
+
           </div>
         </div>
       <% end %>

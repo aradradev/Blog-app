@@ -3,9 +3,17 @@
     <div class="bg-white p-4 rounded-lg shadow-md">
       <div class="flex items-center space-x-4">
         <div class="w-12 h-12 rounded-full overflow-hidden">
-          <%= image_tag(user.photo, class: 'w-full h-full object-cover rounded-full user-profile') if user.photo.present?
+  <% if user.photo.attached?
  %>
-        </div>
+    <%= image_tag user.photo, class: 'w-full h-full object-cover rounded-full user-profile' %>
+<% else %>
+  <%= image_tag 'https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o=', alt: 'Default Profile', class: 'w-full h-full object-cover rounded-full user-profile' %>
+<% end %>
+
+</div>
+
+
+
 <div class="flex flex-row gap-3 justify-between items-center">
 
           <h2 class="text-lg font-semibold"><%= user.name %></h2>

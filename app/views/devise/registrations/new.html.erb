@@ -9,6 +9,15 @@
     <%= f.label :bio %>
     <%= f.text_area :bio %>
   </div>
+<div class="field">
+  <%= f.label :role %><br />
+  <% if current_user&.admin? %>
+    <%= f.select :role, User.roles.keys %>
+  <% else %>
+    <%= f.hidden_field :role, value: 'user' %>
+  <% end %>
+</div>
+
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>

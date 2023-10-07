@@ -7,14 +7,21 @@
   <div class="flex items-center justify-between mb-3">
     <div class="flex items-center space-x-4">
 <div class="w-12 h-12 rounded-full overflow-hidden">
-  <%= image_tag(post.author.photo, class: 'w-full h-full object-cover rounded-full user-profile') if post.author.photo.present?
-%>
+  <% if post.author&.photo&.attached? %>
+  <%= image_tag post.author.photo, class: 'w-full h-full object-cover rounded-full user-profile' %>
+<% else %>
+  <%= image_tag 'https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o=
+', alt: 'Default Profile', class: 'w-full h-full object-cover rounded-full user-profile' %>
+<% end %>
+</div>
 
 
-      </div>
+
+
       <div class="mb-4 flex gap-4 items-center">
-        <h2 class="text-xl font-semibold"><%= post.author.name %></h2>
-        <p class="text-gray-600"><strong><%= pluralize(post.author.posts.count, 'Post') %></strong></p>
+<h2 class="text-xl font-semibold"><%= post.author&.name %></h2>
+<p class="text-gray-600"><strong><%= pluralize(post.author&.posts&.count, 'Post') %></strong></p>
+
       </div>
     </div>
   </div>
@@ -33,9 +40,10 @@
 </div>
 <div class="mt-4">
   <h4 class="text-lg font-semibold mb-2">Recent Comments</h4>
-  <% post.comments.order(created_at: :desc).limit(5).each do |comment| %>
+  <% post.comments&.order(created_at: :desc).limit(5).each do |comment| %>
+
     <div class="mb-2">
-      <p><strong><%= comment.user.name %>:</strong> <%= comment.text %></p>
+      <p><strong><%= comment.user&.name %>:</strong> <%= comment.text %></p>
     </div>
   <% end %>
 </div>
