@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+  load_and_authorize_resource
+  before_action :authenticate_user!, only: %i[new create]
+
   def index
     @posts = Post.includes(:author, :comments).all
   end
@@ -21,6 +24,12 @@ class PostsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy
+    authorize! :destroy, @post
+    @post.destroy
+    redirect_to posts_path, notice: 'Post was successfully deleted.'
   end
 
   private
