@@ -66,7 +66,6 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
-    acts_as_votable (0.13.2)
     addressable (2.8.5)
       public_suffix (>= 2.0.2, < 6.0)
     bindex (0.8.1)
@@ -211,7 +210,6 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    sqlite3 (1.6.6-x64-mingw-ucrt)
     stimulus-rails (1.2.2)
       railties (>= 6.0.0)
     tailwindcss-rails (2.0.30-x64-mingw-ucrt)
@@ -246,7 +244,6 @@ PLATFORMS
   x64-mingw-ucrt
 
 DEPENDENCIES
-  acts_as_votable (~> 0.13.2)
   bootsnap
   capybara
   database_cleaner
@@ -262,7 +259,6 @@ DEPENDENCIES
   rspec-rails (~> 5.1.2)
   selenium-webdriver
   sprockets-rails
-  sqlite3
   stimulus-rails
   tailwindcss-rails
   turbo-rails
